@@ -1,5 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const fileIO = require('fs');
+const path = require('path');
+const test = require('./test');
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -30,11 +33,11 @@ function process_message(msg) {
 }
 
 function get_token() {
-    const fs = require('fs'),
-        path = require('path'),
-        filePath = path.join(__dirname, '.secret_token');
+    const filePath = path.join(__dirname, '.secret_token');
 
-    return fs.readFileSync(filePath).toString();
+    return fileIO.readFileSync(filePath).toString();
 }
+
+test.hello();
 
 client.login(get_token());
