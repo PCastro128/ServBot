@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const fileIO = require('fs');
 const path = require('path');
 const secret = require('./discord_secret');
-const database = require('./database');
+// const database = require('./database');
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
