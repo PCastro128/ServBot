@@ -42,6 +42,14 @@ function process_message(msg) {
     } else if(msg.content.startsWith("##")) {
 	msg.channel.send("*In a mocking tone:* " + msg.content);
     } else if(msg.content.toLowerCase().includes("servbot")) {
+        name_mentioned(msg);
+    }
+}
+
+function name_mentioned(msg) {
+    if(msg.content.toLowerCase().includes("mock")) {
+        msg.channel.send("*In a mocking tone:* " + msg.content);
+    } else {
         if(msg.author.username === "111115tom") {
             msg.channel.send(full_replace(msg.content.toLowerCase(),"servbot", "russell"));
         } else {
