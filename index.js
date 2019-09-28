@@ -2,7 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fileIO = require('fs');
 const path = require('path');
-const test = require('./test');
+const secret = require('./discord_secret');
+const database = require('./database');
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -38,6 +39,5 @@ function get_token() {
     return fileIO.readFileSync(filePath).toString();
 }
 
-test.hello();
 
-client.login(get_token());
+client.login(secret.token).then(r => console.log).catch(err => console.log);
