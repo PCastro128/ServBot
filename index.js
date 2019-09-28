@@ -43,11 +43,18 @@ function process_message(msg) {
 	msg.channel.send("*In a mocking tone:* " + msg.content);
     } else if(msg.content.toLowerCase().includes("servbot")) {
         if(msg.author.username === "111115tom") {
-            msg.channel.send(msg.content.toLowerCase().replace("servbot", "russell"));
+            msg.channel.send(full_replace(msg.content.toLowerCase(),"servbot", "russell"));
         } else {
-            msg.channel.send(msg.content.toLowerCase().replace("servbot", `${msg.author}`));
+            msg.channel.send(full_replace(msg.content.toLowerCase(),"servbot", `${msg.author}`));
         }
     }
+}
+
+function full_replace(whole_string, substring, replace) {
+    while (whole_string.includes(substring)) {
+        whole_string = whole_string.replace(substring, replace);
+    }
+    return whole_string;
 }
 
 function get_token() {
