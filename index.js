@@ -29,7 +29,7 @@ function process_message(msg) {
     } else if (msg.content === '##hey') {
 	            msg.channel.send(`At your command, ${msg.author}!`);
     } else if (msg.content === '##help') {
-	            msg.channel.send('Here is what you can do:\n##hello\n##ping\n##hey\nMy only commands are for fun. Actually practical commands comming soon!');
+	            msg.channel.send('Here is what you can do:\n##hello\n##ping\n##hey\nMy only commands are for fun. Actually practical commands coming soon!');
     } else if(msg.content === "##welcome") {
         if (msg.author.username === "HeroShadow") {
             msg.channel.send('Hello everyone! My name is ServBot. ' +
@@ -42,11 +42,11 @@ function process_message(msg) {
     } else if(msg.content.startsWith("##")) {
 	msg.channel.send("*In a mocking tone:* " + msg.content);
     } else if(msg.content.toLowerCase().includes("servbot")) {
-	if(msg.author.username === "111115tom") {
-	    msg.channel.send('Did you say my name, Russell?');
-	} else {
-	    msg.channel.send(`Did you say my name, ${msg.author}?`);
-	}
+        if(msg.author.username === "111115tom") {
+            msg.channel.send(msg.content.toLowerCase().replace("servbot", "russell"));
+        } else {
+            msg.channel.send(msg.content.toLowerCase().replace("servbot", `${msg.author}`));
+        }
     }
 }
 
