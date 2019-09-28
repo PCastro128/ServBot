@@ -14,7 +14,9 @@ client.on('message', msg => {
 });
 
 function process_message(msg) {
-    if (msg.content === '##ping') {
+    if(msg.author.username === "ServBot") {
+        console.log("message from me");
+    } else if (msg.content === '##ping') {
         msg.channel.send('pong');
         console.log(msg);
         console.log('Ponged!');
