@@ -18,6 +18,8 @@ function process_message(msg) {
         msg.channel.send('pong');
         console.log(msg);
         console.log('Ponged!');
+    } else if (msg.content === '##pong') {
+        msg.channel.send('ping');
     } else if (msg.content === '##exit' && msg.author.username === "HeroShadow") {
         msg.channel.send(`${msg.author}! Thou hast killed me!`);
         console.log('ServBot is now offline.');
