@@ -7,10 +7,10 @@ const FUNCTION_MAPPER  = {
     "hey": [commands.command_hey, "Call ServBot's attention."],
     "ping": [commands.command_ping_pong, "Play ping pong with ServBot."],
     "pong": [commands.command_ping_pong, "X"],
-    "welcome": [commands.command_welcome, "Welcomes ServBot to the chat (admin only)."],
-    "exit": [commands.command_exit, "Destroy this instance of ServBot (admin only)."],
     "creature": [unimplemented, "RPG: Manage creatures."], // create, delete, rename, list
-    "combat": [unimplemented, "RPG: Manage combat."] // start, end, order
+    "combat": [unimplemented, "RPG: Manage combat."], // start, end, order
+    "welcome": [commands.command_welcome, "Welcomes ServBot to the chat (admin only)."],
+    "exit": [commands.command_exit, "Destroy this instance of ServBot (admin only)."]
 };
 
 function command_help(client, msg, args) {

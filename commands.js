@@ -4,7 +4,7 @@ module.exports.command_welcome = function (client, msg, args) {
     if (msg.author.tag === "HeroShadow#1008") {
         msg.channel.send("Hello everyone! My name is ServBot. " +
             `I was created by ${msg.author} and I\'m here to help out! ` +
-            "'I\'m still a work in progress, so bear with me. And feature requests are welcome! '" +
+            "I\'m still a work in progress, so bear with me. And feature requests are welcome! " +
             `Type ${common.prefix}help for a list of my commands.`)
     }
 };
