@@ -8,7 +8,9 @@ const FUNCTION_MAPPER  = {
     "ping": [commands.command_ping_pong, "Play ping pong with ServBot."],
     "pong": [commands.command_ping_pong, "X"],
     "welcome": [commands.command_welcome, "Welcomes ServBot to the chat (admin only)."],
-    "exit": [commands.command_exit, "Destroy this instance of ServBot (admin only)."]
+    "exit": [commands.command_exit, "Destroy this instance of ServBot (admin only)."],
+    "creature": [unimplemented, "RPG: Manage creatures."], // create, delete, rename, list
+    "combat": [unimplemented, "RPG: Manage combat."] // start, end, order
 };
 
 function command_help(client, msg, args) {
@@ -40,10 +42,12 @@ function get_command(msg_text) {
     if (msg_text) {
         command_name = msg_text.split(" ")[0];
     }
-    if (msg_text.includes(" ")) {
-        command_args = msg_text.split(" ");
-    }
+    command_args = msg_text.split(" ");
     return [command_name, command_args];
+}
+
+function unimplemented(client, msg, args) {
+    msg.channel.send("This command hasn't been implemented yet.");
 }
 
 module.exports.process_message = function (client, msg) {

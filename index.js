@@ -1,9 +1,8 @@
 const Discord = require("discord.js");
-const client = new Discord.Client();
-const fileIO = require("fs");
-const path = require("path");
 const secret = require("./discord_secret");
 const messages = require("./message_processor");
+
+const client = new Discord.Client();
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);

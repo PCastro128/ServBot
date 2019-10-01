@@ -5,7 +5,7 @@ module.exports.command_welcome = function (client, msg, args) {
         msg.channel.send("Hello everyone! My name is ServBot. " +
             `I was created by ${msg.author} and I\'m here to help out! ` +
             "'I\'m still a work in progress, so bear with me. And feature requests are welcome! '" +
-            "Type ##help for a list of my commands")
+            `Type ${common.prefix}help for a list of my commands.`)
     }
 };
 
