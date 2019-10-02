@@ -1,8 +1,8 @@
 
 module.exports.prefix = "##";
 
-module.exports.exit = function (client) {
-    client.destroy().then(response => console.log);
+module.exports.exit = function (servbot) {
+    servbot.client.destroy().then(response => console.log);
 };
 
 module.exports.full_replace = function (whole_string, substring, replace) {
