@@ -90,6 +90,14 @@ module.exports.get_main_command_group = function (servbot) {
             return false;
         }));
 
+    main_command_group.add_command(new command.Command("code",
+        "Do you want to see what I really look like?",
+        `${common.prefix}code`,
+        function (servbot, msg, args) {
+            msg.channel.send("ServBot's source code: https://github.com/ShadowPerson/ServBot");
+            return true;
+        }));
+
     main_command_group.add_command(new command.Command("welcome",
         "Welcomes ServBot to the chat (admin only).",
         `${common.prefix}welcome`,
