@@ -38,9 +38,10 @@ class CommandGroup {
 }
 
 class Command {
-    constructor(name, help, callback) {
+    constructor(name, help, usage, callback) {
         this.name = name;
         this.help_msg = help;
+        this.usage = usage;
         this.callback = callback;
         this.has_subcommands = false;
         this.subcommands = null;
@@ -56,7 +57,9 @@ class Command {
         if (this.has_subcommands && args.length > 1) {
             return this.subcommands.execute_command(client, msg, args);
         } else {
-            this.callback(client, msg, args);
+            if (!this.callback(client, msg, args) && this.usage !== "") {
+                msg.channel.send("Invalid usa of command.\nUsage: " + this.usage);
+            }
             return true;
         }
     }
