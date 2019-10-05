@@ -2,6 +2,7 @@ const common = require("./common");
 const command = require("./command");
 const creature_command = require("./command_groups/creature");
 const combat_command = require("./command_groups/combat");
+const charm_command = require("./command_groups/charm");
 
 function command_help(servbot, msg, args, cmd_group=null) {
     if (cmd_group === null) {
@@ -69,6 +70,7 @@ module.exports.get_main_command_group = function (servbot) {
 
     main_command_group.add_command(creature_command);
     main_command_group.add_command(combat_command);
+    main_command_group.add_command(charm_command);
 
     main_command_group.add_command(new command.Command("say",
         "Make me say something.",
@@ -99,8 +101,9 @@ module.exports.get_main_command_group = function (servbot) {
         "",
         function (servbot, msg, args) {
             if (msg.author.tag === "HeroShadow#1008") {
-                servbot.verify_channel_in_data(msg.channel);
-                msg.channel.send(`STORED DATA: ${JSON.stringify(servbot.servbot_data)}`);
+                console.log(msg.content);
+                // servbot.verify_channel_in_data(msg.channel);
+                // msg.channel.send(`STORED DATA: ${JSON.stringify(servbot.servbot_data)}`);
             }
             return true;
         }));

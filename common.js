@@ -1,5 +1,5 @@
 
-module.exports.prefix = "##";
+module.exports.prefix = "$";
 
 module.exports.exit = function (servbot) {
     servbot.client.destroy().then(response => console.log);
