@@ -11,6 +11,7 @@ class ServBot {
         this.client.login(token).then(response => console.log);
         this.servbot_data = {};
         this.load_data();
+        this.data_lock = false;
 
         this.client.on("ready", () => {
             console.log(`Logged in as ${this.client.user.tag}!`);
@@ -47,12 +48,10 @@ class ServBot {
     }
 
     save_data() {
-        servbot_data.save_data(this.servbot_data);
+        servbot_data.save_data(this);
     }
 
     verify_channel_in_data(channel) {
-        console.log(JSON.stringify(this.servbot_data));
-        console.log(channel.guild.id);
         if (!(channel.guild.id in this.servbot_data)) {
             console.log("New server recorded");
             this.servbot_data[channel.guild.id] = {};

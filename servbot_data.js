@@ -11,9 +11,18 @@ module.exports.load_data = function (servbot) {
     })
 };
 
-module.exports.save_data = function (data_obj) {
-    let write_string = JSON.stringify(data_obj);
-    fs.writeFile(data_file_path, write_string, "utf8", function (err) {
+module.exports.save_data = async function (servbot) {
+    await new Promise(((resolve, reject) => {  // Wait for data lock to release
+        if (servbot.data_lock) {
+            reject();
+        } else {
+            resolve();
+        }
+    }));
+    servbot.data_lock = true;  // Acquire data lock
+    let write_string = JSON.stringify(servbot.servbot_data, null, 4);
+    fs.writeFile(data_file_path, write_string, {flag: "w"}, function (err) {
+        servbot.data_lock = false;  // Release data lock
         if (err) throw err;
-    })
+    });
 };
