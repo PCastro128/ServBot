@@ -33,7 +33,8 @@ function get_subcommands() {
             if (!("combat" in channel_data)) channel_data["combat"] = {"active": false, "turn": 0, "creatures": []};
 
             if (channel_data["creatures"].length === 0) {
-                msg.channel.send("Combat can't start. There are no creatures on this channel.")
+                msg.channel.send("Combat can't start. There are no creatures on this channel.");
+                return true;
             }
 
             channel_data["combat"]["active"] = true;

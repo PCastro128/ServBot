@@ -25,4 +25,5 @@ module.exports.save_data = async function (servbot) {
         servbot.data_lock = false;  // Release data lock
         if (err) throw err;
     });
+    return "Data written successfully.";
 };

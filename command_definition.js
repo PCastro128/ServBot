@@ -3,6 +3,7 @@ const command = require("./command");
 const creature_command = require("./command_groups/creature");
 const combat_command = require("./command_groups/combat");
 const charm_command = require("./command_groups/charm");
+const join_command = require("./command_groups/join");
 
 function command_help(servbot, msg, args, cmd_group=null) {
     if (cmd_group === null) {
@@ -71,6 +72,7 @@ module.exports.get_main_command_group = function (servbot) {
     main_command_group.add_command(creature_command);
     main_command_group.add_command(combat_command);
     main_command_group.add_command(charm_command);
+    main_command_group.add_command(join_command);
 
     main_command_group.add_command(new command.Command("say",
         "Make me say something.",
@@ -79,7 +81,7 @@ module.exports.get_main_command_group = function (servbot) {
             if (args.length < 3) {
                 return false;
             }
-            for (let [_, channel] of msg.channel.client.channels) {
+            for (let [_, channel] of msg.channel.guild.channels) {
                 if (channel.type === "text" && channel.name === args[1]) {
                     channel.send(args.splice(2).join(" "));
                     return true;
