@@ -29,6 +29,71 @@ function command_help(servbot, msg, args, cmd_group=null) {
     return true;
 }
 
+function get_creature_subcommands() {
+    let subcommands = new command.CommandGroup("Use the creature command to manage creatures.");
+
+    subcommands.add_command(new command.Command("create",
+        "Create a creature",
+        `${common.prefix}creature create (creature name)`,
+        function (servbot, msg, args) {
+            console.log(args);
+            if (args.length < 2) return false;
+            let creature_name = args.splice(1).join(" ");
+            let channel_data = servbot.get_channel_data(msg.channel);
+            if (!("creatures" in channel_data)) {
+                channel_data["creatures"] = [];
+            }
+            channel_data["creatures"].push(creature_name);
+            msg.channel.send(`Successfully created creature ${creature_name}`);
+            servbot.save_data();
+            return true;
+        }));
+
+    subcommands.add_command(new command.Command("delete",
+        "Delete a creature",
+        `${common.prefix}creature delete (creature name)`,
+        function (servbot, msg, args) {
+            console.log(args);
+            if (args.length < 2) return false;
+            let creature_name = args.splice(1).join(" ");
+            let channel_data = servbot.get_channel_data(msg.channel);
+            if (!("creatures" in channel_data)) channel_data["creatures"] = [];
+            let creature_index = channel_data["creatures"].indexOf(creature_name);
+            if (creature_index > -1) {
+                channel_data["creatures"].splice(creature_index, 1);
+                msg.channel.send(`Successfully deleted creature ${creature_name}`);
+                servbot.save_data();
+            } else {
+                msg.channel.send("Creature not found.");
+            }
+            return true;
+        }));
+
+    subcommands.add_command(new command.Command("list",
+        "Show all creatures on this channel.",
+        `${common.prefix}creature list`,
+        function (servbot, msg, args) {
+            console.log(args);
+            if (args.length > 1) return false;
+            let channel_data = servbot.get_channel_data(msg.channel);
+            if (!("creatures" in channel_data)) {
+                channel_data["creatures"] = [];
+            }
+            if (channel_data["creatures"].length === 0) {
+                msg.channel.send("There are no creatures on this channel.")
+            } else {
+                let output_string = "These are the creatures on the channel:";
+                for (let i=0; i<channel_data["creatures"].length; i++) {
+                    output_string += `\n-${channel_data["creatures"][i]}`;
+                }
+                msg.channel.send(output_string);
+            }
+            return true;
+        }));
+
+    return subcommands;
+}
+
 module.exports.get_main_command_group = function (servbot) {
     let main_command_group = new command.CommandGroup("This is what you can do with Servbot:" +
         ` (prefix commands with ${common.prefix})`, true);
@@ -64,10 +129,15 @@ module.exports.get_main_command_group = function (servbot) {
         "",
         command_ping_pong));
 
-    main_command_group.add_command(new command.Command("creature",
+    let creature_command_obj = new command.Command("creature",
         "RPG: Manage creatures.",
         `${common.prefix}creature`,
-        unimplemented));
+        function (servbot, msg, args) {
+            return true;
+        });
+    creature_command_obj.set_subcommands(get_creature_subcommands());
+    main_command_group.add_command(creature_command_obj);
+
 
     main_command_group.add_command(new command.Command("combat",
         "RPG: Manage combat.",
@@ -75,8 +145,8 @@ module.exports.get_main_command_group = function (servbot) {
         unimplemented));
 
     main_command_group.add_command(new command.Command("say",
-        "X",
-        "",
+        "Make me say something.",
+        `${common.prefix}say (text channel name) (message)`,
         function (servbot, msg, args) {
             if (args.length < 3) {
                 return false;
@@ -95,6 +165,17 @@ module.exports.get_main_command_group = function (servbot) {
         `${common.prefix}code`,
         function (servbot, msg, args) {
             msg.channel.send("ServBot's source code: https://github.com/ShadowPerson/ServBot");
+            return true;
+        }));
+
+    main_command_group.add_command(new command.Command("debug",
+        "X",
+        "",
+        function (servbot, msg, args) {
+            if (msg.author.tag === "HeroShadow#1008") {
+                servbot.verify_channel_in_data(msg.channel);
+                msg.channel.send(`STORED DATA: ${JSON.stringify(servbot.servbot_data)}`);
+            }
             return true;
         }));
 

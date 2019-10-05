@@ -55,10 +55,10 @@ class Command {
     }
     execute(client, msg, args) {
         if (this.has_subcommands && args.length > 1) {
-            return this.subcommands.execute_command(client, msg, args);
+            return this.subcommands.execute_command(client, msg, args.splice(1));
         } else {
             if (!this.callback(client, msg, args) && this.usage !== "") {
-                msg.channel.send("Invalid usa of command.\nUsage: " + this.usage);
+                msg.channel.send("Invalid usage of command.\nUsage: " + this.usage);
             }
             return true;
         }
