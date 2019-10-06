@@ -23,7 +23,7 @@ function command_help(servbot, msg, args, cmd_group=null) {
             }
 
         } else if (cmd.has_subcommands) {  // help for subcommand, which has subcommands
-            msg.channel.send("Usage: " + cmd.usage);
+            msg.channel.send("Usage: " + cmd.usage); ///////////////////////////////////////// TO DO: REMOVE THIS LINE AND MODIFY CMD_GRP HELP/////////////
             command_help(servbot, msg, args.splice(1), cmd.subcommands);
         } else {  // subcommand doesn't have subcommands
             msg.channel.send("Could not find specified command.");
