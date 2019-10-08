@@ -2,7 +2,7 @@ const common = require("../common");
 const command = require("../command");
 
 let join_command = new command.Command("join",
-    "Have ServBot join your voice channel.",
+    "X",
     `${common.prefix}join`,
     function (servbot, msg, args) {
         if (msg.member.voiceChannel) {

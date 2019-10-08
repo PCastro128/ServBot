@@ -9,8 +9,8 @@ function general_message(servbot, msg) {
             msg.channel.send("Sorry for intruding, but did you mention my name? If not, include '!r' +" +
                 "in you message next time so I don't interrupt you.");
             console.log(`${msg.author.tag} just mentioned my name, and I politely responded.`);
-        } else if (msg.channel.guild.id === "414234574248345612") {
-            servbot.play_ding();
+        // } else if (msg.channel.guild.id === "414234574248345612") {
+        //     servbot.play_ding();
         } else {
             msg.channel.send(common.full_replace(msg.content.toLowerCase(), "servbot", `${msg.author}`));
             console.log(`${msg.author.tag} just mentioned my name, and I repeated what they said`);
