@@ -67,7 +67,7 @@ let creature_command = new command.Command("creature",
     "RPG: Manage creatures.",
     `${common.prefix}creature (subcommand)`,
     function (servbot, msg, args) {
-        return true;
+        return false;
 });
 creature_command.set_subcommands(get_subcommands());
 

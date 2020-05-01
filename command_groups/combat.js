@@ -121,7 +121,7 @@ let combat_command = new command.Command("combat",
         "RPG: Manage combat.",
         `${common.prefix}combat [subcommand]`,
         function (servbot, msg, args) {
-            return true;
+            return false;
         });
 combat_command.set_subcommands(get_subcommands());
 

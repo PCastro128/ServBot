@@ -58,7 +58,7 @@ class Command {
             return this.subcommands.execute_command(client, msg, args.splice(1));
         } else {
             if (!this.callback(client, msg, args) && this.usage !== "") {
-                msg.channel.send("Invalid usage of command.\nUsage: " + this.usage);
+                msg.channel.send("Invalid usage of command. Use the help command for more info. \nUsage: " + this.usage);
             }
             return true;
         }

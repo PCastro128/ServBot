@@ -99,7 +99,7 @@ let charm_command = new command.Command("charm",
     "Charm ServBot toward a server, channel, or user.",
     `${common.prefix}charm [subcommand]`,
     function (servbot, msg, args) {
-        return true;
+        return false;
     });
 charm_command.set_subcommands(get_subcommands());
 

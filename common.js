@@ -33,3 +33,11 @@ module.exports.server_is_charmed = function (servbot, msg) {
     servbot.save_data();
     return server_data["charmed"];
 };
+
+if(typeof(String.prototype.trim) === "undefined")
+{
+    String.prototype.trim = function()
+    {
+        return String(this).replace(/^\s+|\s+$/g, '');
+    };
+}
