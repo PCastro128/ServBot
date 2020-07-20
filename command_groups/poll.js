@@ -55,8 +55,8 @@ function get_subcommands() {
             let question = args.splice(3).join(" ");
             if (isNaN(parseInt(args[1])) || parseInt(args[1]) < 0) return false;
             if (isNaN(parseInt(args[2])) || parseInt(args[2]) > 10) return false;
-            msg.channel.send(`Poll: ${question}\n`).then(message => add_numbered_reactions(message, parseInt(args[1]),
-                parseInt(args[2])-parseInt(args[1])+1));
+            msg.channel.send(`Poll: ${question}\n`).then(message => {add_numbered_reactions(message, parseInt(args[1]),
+                parseInt(args[2]))});
             return true;
         }));
 
