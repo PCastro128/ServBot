@@ -37,7 +37,8 @@ function command_help(servbot, msg, args, cmd_group=null) {
 
 module.exports.get_main_command_group = function (servbot) {
     let main_command_group = new command.CommandGroup("This is what you can do with PollBot:" +
-        ` (prefix commands with ${common.prefix})`, true);
+        ` (prefix commands with ${common.prefix})` + "\nMake polls easily on this page: " +
+        "https://paoloc.online/poll-maker", true);
 
     main_command_group.add_command(new command.Command("help",
         "For more detailed help, type 'help [any command]'",

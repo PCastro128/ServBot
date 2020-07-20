@@ -13,9 +13,11 @@ function add_numbered_reactions(message, start, end) {
 }
 
 function add_reactions(message, emoji_list) {
-    for (let i=0; i<=emoji_list.length; i++) {
-        message.react(emoji_list[i]).then(null).catch(console.error);
-    }
+    return new Promise(async resolve => {
+        for (let i=0; i<=emoji_list.length; i++) {
+            await message.react(emoji_list[i]).then(null).catch(console.error);
+        }
+    })
 }
 
 function get_subcommands() {
