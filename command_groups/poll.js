@@ -5,9 +5,11 @@ const emojiRegex = require("emoji-regex");
 const numbered_emojis = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟"]
 
 function add_numbered_reactions(message, start, end) {
-    for (let i=start; i<=end; i++) {
-        message.react(numbered_emojis[i]).then(null).catch(console.error);
-    }
+    return new Promise(async resolve => {
+        for (let i=start; i<=end; i++) {
+            await message.react(numbered_emojis[i]).then(null).catch(console.error);
+        }
+    })
 }
 
 function add_reactions(message, emoji_list) {
@@ -55,8 +57,8 @@ function get_subcommands() {
             let question = args.splice(3).join(" ");
             if (isNaN(parseInt(args[1])) || parseInt(args[1]) < 0) return false;
             if (isNaN(parseInt(args[2])) || parseInt(args[2]) > 10) return false;
-            msg.channel.send(`Poll: ${question}\n`).then(message => {add_numbered_reactions(message, parseInt(args[1]),
-                parseInt(args[2]))});
+            msg.channel.send(`Poll: ${question}\n`).then(message => add_numbered_reactions(message, parseInt(args[1]),
+                parseInt(args[2])));
             return true;
         }));
 
