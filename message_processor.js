@@ -26,8 +26,8 @@ function invalid_command(servbot, msg) {
         msg.channel.send("My deepest apologies, but the command you entered isn't valid. " +
             "Are you sure you typed the command right and have the right arguments?");
     } else {
-        let message_text = msg.content.replace(common.prefix, "");
-        msg.channel.send("*In a mocking tone:* " + message_text);
+        // let message_text = msg.content.replace(common.prefix, "");
+        // msg.channel.send("*In a mocking tone:* " + message_text);
     }
 }
 
