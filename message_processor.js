@@ -52,7 +52,7 @@ module.exports.process_message = function (servbot, msg) {
                 console.log(`${msg.author.tag} executed command: ${msg.content}`);
             }
         } else {
-            general_message(servbot, msg);
+            // general_message(servbot, msg);
         }
     }
 };
